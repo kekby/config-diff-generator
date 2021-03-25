@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-import CLI from '../src/CLI.js';
+import cli from '../src/cli.js';
 
-const cli = new CLI();
+cli.parse(process.argv);
 
-cli.program.parse();
+if (!cli.args.length) cli.help();
