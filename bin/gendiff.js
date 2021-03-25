@@ -1,6 +1,27 @@
 #!/usr/bin/env node
-import cli from '../src/cli.js';
+import { Command } from 'commander';
+import genDiff from '../src/index.js';
 
-cli.parse(process.argv);
+const program = new Command();
 
-if (!cli.args.length) cli.help();
+program
+  .version('0.1.0')
+  .description('Compares two configuration files and shows a difference')
+  .option('-f, --format [type]', 'output format')
+  .arguments('<firstConfig> <secondConfig>')
+  .action((firstConfig, secondConfig) => {
+    if (!firstConfig || !secondConfig) {
+      program.help();
+    }
+
+    try {
+      const diff = genDiff(firstConfig, secondConfig, program.format);
+      console.log(diff);
+    } catch (err) {
+      console.log(err.message);
+    }
+  });
+
+program.parse(process.argv);
+
+if (!program.args.length) program.help();

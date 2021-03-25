@@ -18,4 +18,8 @@ describe('generates diff', () => {
   test('works with json', () => {
     expect(buildDiff(file1, file2)).toEqual(expected);
   });
+
+  test('open existing file should log error message', () => {
+    expect(() => buildDiff('doesnotexist.json', file2)).toThrow();
+  });
 });
