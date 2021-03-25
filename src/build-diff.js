@@ -1,5 +1,4 @@
 import _ from 'lodash';
-import renderRich from './renders/render-rich.js';
 
 const checks = [
   {
@@ -36,7 +35,7 @@ const buildDiff = (obj1, obj2) => {
     return process(obj1, obj2, key, buildDiff);
   });
 
-  return renderRich(diff);
+  return diff;
 };
 
 export default buildDiff;
