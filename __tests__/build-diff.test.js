@@ -11,7 +11,7 @@ const expected = `{
   + verbose: true
 }`;
 
-describe('generates json diff', () => {
+describe('generates diff', () => {
   const file1 = '__tests__/fixtures/file1.json';
   const file2 = '__tests__/fixtures/file2.json';
 
