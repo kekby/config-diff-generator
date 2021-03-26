@@ -14,8 +14,8 @@ const objectStringify = (object, depth) => {
 
 const render = (ast) => {
   const inner = (currentAst, depth) => {
-    const indent1 = _.repeat(' ', depth * 2 + 2);
-    const indent2 = _.repeat(' ', depth * 2);
+    const indent1 = _.repeat(' ', depth * 4 + 2);
+    const indent2 = _.repeat(' ', depth * 4);
 
     const mapper = (node) => {
       const buildString = (valueType) => {
