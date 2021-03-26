@@ -12,14 +12,21 @@ const expected = `{
 }`;
 
 describe('generates diff', () => {
-  const file1 = '__tests__/fixtures/file1.json';
-  const file2 = '__tests__/fixtures/file2.json';
+  const json1 = '__tests__/fixtures/file1.json';
+  const json2 = '__tests__/fixtures/file2.json';
+
+  const yml1 = '__tests__/fixtures/file1.yml';
+  const yml2 = '__tests__/fixtures/file2.yml';
 
   test('works with json', () => {
-    expect(buildDiff(file1, file2)).toEqual(expected);
+    expect(buildDiff(json1, json2)).toEqual(expected);
+  });
+
+  test('works with yml', () => {
+    expect(buildDiff(yml1, yml2)).toEqual(expected);
   });
 
   test('open existing file should log error message', () => {
-    expect(() => buildDiff('doesnotexist.json', file2)).toThrow();
+    expect(() => buildDiff('doesnotexist.json', json2)).toThrow();
   });
 });
