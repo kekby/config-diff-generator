@@ -6,8 +6,6 @@ const program = new Command();
 
 program
   .version('0.1.0')
-  .description('Compares two configuration files and shows a difference')
-  .option('-f, --format [type]', 'output format')
   .arguments('<firstConfig> <secondConfig>')
   .action((firstConfig, secondConfig) => {
     if (!firstConfig || !secondConfig) {
@@ -15,12 +13,16 @@ program
     }
 
     try {
-      const diff = genDiff(firstConfig, secondConfig, program.format);
+      const diff = genDiff(firstConfig, secondConfig, program.opts().format);
       console.log(diff);
     } catch (err) {
       console.log(err.message);
     }
   });
+
+program
+  .description('Compares two configuration files and shows a difference')
+  .option('-f, --format [type]', 'output format', 'stylish');
 
 program.parse(process.argv);
 
